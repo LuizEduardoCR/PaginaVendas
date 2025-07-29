@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA na Assistência Social - Transforme sua Prática Profissional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            color: #2c2c2c;
+            padding-top: 70px; /* Space for fixed header */
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(108, 108, 108, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #495057;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-text .suas {
+            color: #ff8200;
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 0.02em;
+        }
+
+        .logo-text .capacitacoes {
+            color: #6c6c6c;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            margin-top: -2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        .nav-menu li {
+            margin: 0;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #6c757d;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff8200;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #ff8200;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a.active {
+            color: #ff8200;
+        }
+
+        .nav-cta {
+            background: #ff8200;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: #e6740a;
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #495057;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid rgba(108, 108, 108, 0.1);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+            padding: 1rem 0;
+            margin: 0;
+        }
+
+        .mobile-nav-menu li {
+            margin: 0;
+        }
+
+        .mobile-nav-menu a {
+            display: block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: #6c757d;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .mobile-nav-menu a:hover,
+        .mobile-nav-menu a.active {
+            color: #ff8200;
+            background: rgba(255, 130, 0, 0.05);
+            border-left-color: #ff8200;
+        }
+
+        .mobile-nav-cta {
+            margin: 1rem 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .hero {
+            background: linear-gradient(160deg, #f8f9fa 0%, #e9ecef 30%, #dee2e6 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="2" fill="rgba(255,130,0,0.08)"/><circle cx="800" cy="300" r="1.5" fill="rgba(255,130,0,0.05)"/><circle cx="400" cy="600" r="2.5" fill="rgba(255,130,0,0.06)"/><circle cx="700" cy="800" r="1.8" fill="rgba(255,130,0,0.04)"/></svg>');
+            animation: floatGentle 30s ease-in-out infinite;
+        }
+
+        @keyframes floatGentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.15;
+            color: #495057;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: #ff8200;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
+        .hero-text .description {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: #6c757d;
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff8200;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 130, 0, 0.15);
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 130, 0, 0.25);
+            background: #e6740a;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 450px;
+            height: 400px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .image-container::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .image-placeholder {
+            color: white;
+            font-size: 4rem;
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 25px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #495057;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        /* Introduction Section */
+        .intro-section {
+            background: #ffffff;
+        }
+
+        .intro-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255,130,0,0.05), rgba(255,130,0,0.02));
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #ff8200;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .highlight-text {
+            font-size: 1.2rem;
+            color: #495057;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* Por que Section */
+        .why-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .why-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .why-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #495057;
+        }
+
+        .why-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .challenge-list {
+            background: rgba(255,130,0,0.04);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border: 1px solid rgba(255,130,0,0.1);
+        }
+
+        .challenge-list h4 {
+            color: #ff8200;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .challenge-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .challenge-list li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        .challenge-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #ff8200;
+            font-weight: bold;
+        }
+
+        .why-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-highlight {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,130,0,0.2);
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .info-highlight h3 {
+            color: #ff8200;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .info-highlight p {
+            color: #6c757d;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Diferenciais */
+        .features-section {
+            background: white;
+        }
+
+        .features-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #f1f3f4;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(255,130,0,0.1);
+            border-color: rgba(255,130,0,0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #495057;
+            line-height: 1.3;
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #6c757d;
+        }
+
+
+        /* Metodologia */
+        .methodology-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .methodology-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #6c757d;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .method-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid #f1f3f4;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        .method-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .method-item h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #495057;
+            line-height: 1.3;
+        }
+
+        .method-item p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #6c757d;
+        }
+
+        .advantages-section {
+            background: rgba(255,130,0,0.02);
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 4rem 0;
+            border: 1px solid rgba(255,130,0,0.08);
+        }
+
+        .advantages-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .advantages-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .advantage-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .advantage-icon {
+            font-size: 1.3rem;
+            margin-top: 0.2rem;
+            color: #ff8200;
+        }
+
+        .advantage-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #6c757d;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background: #6c6c6c;
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .tips-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tips-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #ff8200;
+            font-weight: 600;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tip-item {
+            background: rgba(255,255,255,0.08);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tip-item h4 {
+            color: #ff8200;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .tip-item p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Ementa */
+        .curriculum-section {
+            background: white;
+        }
+
+        .curriculum-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        .curriculum-accordion {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border: 1px solid #f1f3f4;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+        }
+
+        .accordion-header {
+            background: #6c6c6c;
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .accordion-header::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            color: #ff8200;
+        }
+
+        .accordion-header.active::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .accordion-header:hover {
+            background: #ff8200;
+        }
+
+        .accordion-content {
+            padding: 1.5rem;
+            display: none;
+            background: #fafafa;
+        }
+
+        .accordion-content.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .accordion-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .accordion-content li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #6c757d;
+            font-size: 1rem;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .accordion-content li:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ff8200;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* CTA Final */
+        .final-cta {
+            background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .final-cta-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ff8200;
+            font-weight: 500;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .transformation-quote {
+            background: rgba(255,130,0,0.08);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin: 3rem auto;
+            max-width: 700px;
+            border: 1px solid rgba(255,130,0,0.2);
+        }
+
+        .quote-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.95);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .price-highlight {
+            background: rgba(255,255,255,0.08);
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 3rem auto;
+            max-width: 500px;
+            border: 2px solid #ff8200;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #ff8200;
+            margin-bottom: 1rem;
+        }
+
+        .price-description {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+        }
+
+        .buy-button {
+            display: inline-block;
+            background: #ff8200;
+            color: white;
+            padding: 1.5rem 3rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 130, 0, 0.3);
+            margin-top: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 130, 0, 0.4);
+            background: #e6740a;
+        }
+
+        .guarantee-badge {
+            background: rgba(255,130,0,0.1);
+            color: #ff8200;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            display: inline-block;
+            border: 1px solid rgba(255,130,0,0.3);
+        }
+
+        .closing-message {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .closing-message p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+                padding: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .why-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .why-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .ai-icon {
+                width: 200px;
+                height: 200px;
+                font-size: 4rem;
+            }
+
+            .methodology-grid,             .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .advantages-list, .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .final-cta h2 {
+                font-size: 2rem;
+            }
+
+            .buy-button {
+                padding: 1.2rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#inicio" class="logo">
+                <div class="logo-icon">
+                    <img src="imagens/logo.png" alt="" style="width: 13vw;">
+                </div>
+                
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="nav-link">Início</a></li>
+                    <li><a href="#sobre" class="nav-link">Por que este curso?</a></li>
+                    <li><a href="#diferenciais" class="nav-link">Diferenciais</a></li>
+                    <li><a href="#metodologia" class="nav-link">Metodologia</a></li>
+                    <li><a href="#ementa" class="nav-link">Ementa</a></li>
+                </ul>
+            </nav>
+            
+            <a href="https://pay.kiwify.com.br/nlTVdBf" class="nav-cta">Matricule-se</a>
+            
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-nav-menu">
+            <li><a href="#inicio" class="nav-link">Início</a></li>
+            <li><a href="#sobre" class="nav-link">Por que este curso?</a></li>
+            <li><a href="#diferenciais" class="nav-link">Diferenciais</a></li>
+            <li><a href="#metodologia" class="nav-link">Metodologia</a></li>
+            <li><a href="#ementa" class="nav-link">Ementa</a></li>
+        </ul>
+        <div class="mobile-nav-cta">
+            <a href="https://pay.kiwify.com.br/nlTVdBf" class="nav-cta">Matricule-se</a>
+        </div>
+    </div>
+
+     <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 style="font-size: 2.2rem;">Inteligência Artificial na Assistência Social – Aplicações Práticas para o Cotidiano Profissional</h1>
+                <p class="subtitle">Transforme a sobrecarga em potência</p>
+                <p class="description">Descubra como a IA pode ser sua aliada na prática profissional do SUAS. Você está prestes a iniciar uma jornada que pode revolucionar sua prática profissional. Este não é apenas um curso sobre tecnologia - é sobre potencializar sua capacidade de transformar vidas por meio de ferramentas inteligentes, sem perder os princípios e a escuta qualificada do SUAS.</p>
+                <a href="https://pay.kiwify.com.br/nlTVdBf" class="cta-button">Começe sua transformação</a>
+            </div>
+            <div class="hero-visual">
+                <div class="image-container">
+                        <img src="imagens/imagem-hero-section.jpeg" alt="">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section why-section" id="sobre">
+        <div class="container">
+            <h2 class="section-title">Por que este curso foi criado?</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; font-size: 1.1rem; color: #495057;">A assistência social brasileira enfrenta desafios crescentes que exigem soluções inovadoras e eficazes.</p>
+            <div class="why-content">
+                <div class="info-highlight">
+                    <h3 style="color: #ff8200;">Principais desafios enfrentados</h3>
+                    <div style="text-align: left;">
+                        <p style="margin-bottom: 0.5rem;">• Demandas complexas e multifacetadas</p>
+                        <p style="margin-bottom: 0.5rem;">• Recursos limitados para atendimento</p>
+                        <p style="margin-bottom: 0.5rem;">• Documentação extensa e burocrática</p>
+                        <p style="margin-bottom: 0;">• Necessidade de respostas cada vez mais qualificadas</p>
+                    </div>
+                </div>
+                <div class="info-highlight">
+                    <h3 style="color: #ff8200;">Transforme sua prática profissional</h3>
+                    <p style="margin-bottom: -2vh;">Aprenda a usar IA de forma ética e eficiente, mantendo o foco no atendimento humanizado e qualificado que o SUAS exige.</p>
+                </div>
+            </div>
+            <p style="text-align: center; max-width: 800px; margin: 3rem auto 0; font-size: 1.1rem; color: #495057;">A Inteligência Artificial surge como uma aliada poderosa para otimizar seu tempo e amplificar seu impacto social, mantendo sempre os princípios éticos e a escuta qualificada que são fundamentais no SUAS.</p>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section class="section features-section" id="diferenciais">
+        <div class="container">
+            <h2 class="section-title">O que torna este curso diferente?</h2>
+            <div class="features-intro">
+                <p>Este curso foi desenvolvido especificamente para profissionais da assistência social, com uma abordagem única que combina tecnologia avançada com os valores humanos essenciais do SUAS.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">💬</span>
+                    <h3 class="feature-title">Linguagem acessível, sem jargões técnicos desnecessários</h3>
+                    <p class="feature-description">Conteúdo desenvolvido em linguagem clara e direta, pensado para profissionais que querem aprender IA sem se perder em termos técnicos complexos.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3 class="feature-title">Situações reais do SUAS para facilitar a aplicação imediata</h3>
+                    <p class="feature-description">Exemplos práticos e casos reais do cotidiano da assistência social, permitindo que você aplique o conhecimento imediatamente em seu trabalho.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🛡️</span>
+                    <h3 class="feature-title">Ética e segurança como pilares fundamentais</h3>
+                    <p class="feature-description">Aprenda a usar IA de forma responsável, respeitando a privacidade dos usuários e mantendo os princípios éticos da assistência social.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Conteúdo com aplicação imediata no seu dia a dia profissional</h3>
+                    <p class="feature-description">Ferramentas e técnicas que você pode implementar hoje mesmo, otimizando seus processos e melhorando a qualidade do atendimento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metodologia -->
+    <section class="section methodology-section" id="metodologia">
+        <div class="container">
+            <h2 class="section-title">Metodologia do Curso</h2>
+            <div class="methodology-intro">
+                <p>Nossa metodologia foi cuidadosamente desenvolvida para maximizar seu aprendizado e facilitar a aplicação prática dos conhecimentos em IA na assistência social.</p>
+            </div>
+            <div class="methodology-grid">
+                <div class="method-item">
+                    <h3>📖 Conteúdo 100% textual, direto na plataforma Kiwifi</h3>
+                    <p>Você lê no seu ritmo, quando quiser, sem depender de horários fixos ou conexão de alta velocidade.</p>
+                </div>
+                <div class="method-item">
+                    <h3>🎯 Textos objetivos, com linguagem acessível</h3>
+                    <p>Conteúdo direto e aplicável ao cotidiano do SUAS, sem enrolação ou termos técnicos desnecessários.</p>
+                </div>
+                <div class="method-item">
+                    <h3>💡 Exemplos reais e sugestões práticas</h3>
+                    <p>Uso da IA em situações comuns do trabalho na assistência social, com aplicação imediata.</p>
+                </div>
+                <div class="method-item">
+                    <h3>✍️ Atividades ao longo do curso</h3>
+                    <p>Exercícios práticos para estimular a reflexão e a aplicação do conteúdo aprendido.</p>
+                </div>
+                <div class="method-item">
+                    <h3>📊 Quiz e autoavaliação</h3>
+                    <p>Avaliação ao final de cada módulo para consolidar o aprendizado e identificar pontos de melhoria.</p>
+                </div>
+                <div class="method-item">
+                    <h3>🏆 Certificado de 20 horas</h3>
+                    <p>Emitido automaticamente após a conclusão do curso, validando sua capacitação em IA para o SUAS.</p>
+                </div>
+            </div>
+            
+            <div class="advantages-section">
+                <h3 class="advantages-title">Por que o conteúdo em texto é uma vantagem?</h3>
+                <div class="advantages-list">
+                    <div class="advantage-item">
+                        <span class="advantage-icon">🔄</span>
+                        <div class="advantage-text">Você pode ler e reler quando quiser, sem depender de vídeo ou conexão de alta velocidade.</div>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">🎯</span>
+                        <div class="advantage-text">O aprendizado é mais objetivo e direto, sem enrolação.</div>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">⏰</span>
+                        <div class="advantage-text">Ideal para quem gosta de estudar com foco e autonomia, aproveitando cada minuto disponível.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section">
+        <div class="container">
+            <div class="tips-container">
+                <h3 class="tips-title">Como aproveitar ao máximo este curso</h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <h4>🔬 Pratique cada exemplo</h4>
+                        <p>Teste todos os exemplos apresentados no curso para fixar o aprendizado.</p>
+                    </div>
+                    <div class="tip-item">
+                        <h4>🔧 Adapte à sua realidade</h4>
+                        <p>Customize as ferramentas e técnicas para o seu contexto específico de trabalho.</p>
+                    </div>
+                    <div class="tip-item">
+                        <h4>💪 Experimente sem medo</h4>
+                        <p>Não tenha receio de errar - é experimentando que você vai dominar as ferramentas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ementa -->
+    <section class="section curriculum-section" id="ementa">
+        <div class="container">
+            <h2 class="section-title">Ementa Completa</h2>
+            <div class="curriculum-intro">
+                <p>Um programa completo e estruturado para transformar sua prática profissional através da Inteligência Artificial, sempre respeitando os princípios e diretrizes do SUAS.</p>
+            </div>
+            <div class="curriculum-accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">1. Sua Jornada de Aprendizado</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>1.1. Apresentação do curso</li>
+                            <li>1.2. Ementa</li>
+                            <li>1.3. Mapeamento da sua Realidade Profissional</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">2. O que é Inteligência Artificial e por que ela chegou ao SUAS?</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>2.1. O que é Inteligência Artificial (IA)?</li>
+                            <li>2.2. Benefícios da IA para Assistência Social</li>
+                            <li>2.3. Medos Comuns e Como Superá-los</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">3. Ética, Segurança e Responsabilidade no Uso da IA no SUAS</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>3.1. Ética e Segurança no Uso da IA</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">4. Primeiros Passos no ChatGPT</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>4.1 Primeiros Passos no ChatGPT</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">5. IA no Atendimento às Famílias</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>5.1. Preparação de roteiros de entrevista</li>
+                            <li>5.2. Perguntas assertivas para diagnóstico social</li>
+                            <li>5.3. Resumos de atendimento mais eficazes</li>
+                            <li>5.4. Identificação de demandas não verbalizadas</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">6. Prontuários Inteligentes</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>6.1. Evolução Social no SUAS</li>
+                            <li>6.2. Organização de informações familiares</li>
+                            <li>6.3. Relatórios técnicos mais claros</li>
+                            <li>6.4. Acompanhamento de metas e objetivos</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">7. Planejamento de Grupos e Ações Coletivas</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>7.1. Dinâmicas de grupo personalizadas</li>
+                            <li>7.2. Materiais educativos adaptados ao público</li>
+                            <li>7.3. Cronogramas de atividades</li>
+                            <li>7.4. Avaliação de resultados</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">8. Finalizando a Jornada</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>8.1 Mensagem final</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="final-cta" id="comprar">
+        <div class="container">
+            <div class="final-cta-content">
+                <h2>Transforme sua prática profissional hoje!</h2>
+                <p class="final-cta-subtitle">Dê o primeiro passo rumo à inovação na assistência social</p>
+                
+                <div class="transformation-quote">
+                    <p class="quote-text" style="margin-bottom: -.7vh;">"A tecnologia é uma ferramenta, mas você continua sendo o protagonista da transformação social."</p>
+                </div>
+                
+                <div class="price-highlight">
+                    <div class="price">R$ 89,90</div>
+                    <div class="price-description">✓ Acesso por 12 meses<br>✓ Certificado de 20 horas<br>✓ Conteúdo 100% aplicável</div>
+                </div>
+
+                <a href="https://pay.kiwify.com.br/nlTVdBf" class="buy-button">Quero Transformar Minha Prática</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            this.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-nav-menu a, .mobile-nav-cta a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Header scroll effect
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Active menu item on scroll
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', function() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const headers = document.querySelectorAll('.accordion-header');
+            
+            headers.forEach((header, index) => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const isActive = content.classList.contains('active');
+                    
+                    // Close all accordions
+                    document.querySelectorAll('.accordion-content').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    document.querySelectorAll('.accordion-header').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Open clicked accordion if it wasn't active
+                    if (!isActive) {
+                        content.classList.add('active');
+                        this.classList.add('active');
+                    }
+                });
+                
+                // Make sure items 3 and 4 (index 2 and 3) are clickable
+                if (index === 2 || index === 3) {
+                    header.style.cursor = 'pointer';
+                    header.style.pointerEvents = 'auto';
+                }
+            });
+            
+            // Open first accordion by default
+            if (headers.length > 0) {
+                headers[0].click();
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Subtle scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for subtle animation
+        document.querySelectorAll('.feature-card, .method-item, .stat-card, .accordion-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
